@@ -71,6 +71,8 @@
             <p>We try to convert the text in your note, the title (if it exists), and the date it was created so your notes will keep their order</p>
             <b>The creating date of some/all of my notes hasn't been converted, why?</b>
             <p>Unfortunately, there is no universal date format used in the Google Keep Archive so we try to get the date and convert it to the format Standardnotes understands through two different operations but sometimes both of them fail.</p>
+            <b>On Standardnotes it says "{{note.createdAtString() || 'Now'}}" where to created time should be, why?</b>
+            <p>This seems to be a problem with Standardnotes if the converted date is invalid. We try to validate the date but if our validator misses it this error appears.</p>
             <b>"There were errors while converting your notes". What can I do?</b>
             <p>This error appears when the converter encounters a problem at any point of the conversion so we can't specifically say what went wrong. Make sure you only have the Google Keep Takeout .html files selected as any other file will produce this error. You can also try to find out which note produces this error when being converted by converting in smaller groups of notes.</p>
             <b>The converted time in my notes is off by a few hours, why?</b>
