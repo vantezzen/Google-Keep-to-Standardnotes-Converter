@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+  <title>Google Keep to Standardnotes archive converter</title>
+</head>
+
+
+<body id="page-top">
+
+  <header class="bg-primary text-white">
+    <div class="container text-center">
+      <h1>Google Keep to Standardnotes archive converter</h1>
+      <p class="lead"></p>
+    </div>
+  </header>
+
+  <section id="about">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <h2>About</h2>
+          <p class="lead">This simple page will allow you to convert your Google Keep notes into a Standardnotes archive. Please follow the instructions below to get started.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="convert" class="bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <h2>Convert</h2>
+          <p><b>1.</b> Go to <a href="https://www.google.com/settings/takeout" target="_blank">Google Takeout</a> and create an archive for your Google Keep notes</p>
+          <p><b>2.</b> Download the archive to your computer and extract the files</p>
+          <p><b>3.</b>Click on the file input below and choose the .html note files from your Takeout Archive (located in <kbd>[Takeout Folder]/Keep/*.html</kbd>; <b>not</b> index.html)</p>
+          <input type="file" id="files" name="files[]" multiple class="form-control" accept=".html" />
+
+          <p><b>4.</b>Click on the "Convert to Standardnotes Archive" button below, wait for it to convert and download the file</p>
+
+          <button class="btn btn-success btn-block" id="convert-btn">Convert to Standardnotes Archive</button>
+
+          <pre id="err"></pre>
+
+          <div id="note"></div>
+
+          <p><b>5.</b>Import the archive into Standardnotes using the "Import Data from Archive" option</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <h2>FAQ</h2>
+          <p>
+            <b>Where do my notes get send to to be converted?</b>
+            <p>Your notes are being converted on your computer so they do not get send anywhere</p>
+            <b>Do you save my notes on your server?</b>
+            <p>Again: As we do not send your notes anywhere we do not save them</p>
+            <b>Is there a limit on how many notes can be converted?</b>
+            <p>Theoretically: no, practically: We don't know</p>
+            <b>Which data will be converted?</b>
+            <p>We try to convert the text in your note, the title (if it exists), and the date it was created so your notes will keep their order</p>
+            <b>The creating date of some/all of my notes hasn't been converted, why?</b>
+            <p>Unfortunately, there is no universal date format used in the Google Keep Archive so we try to get the date and convert it to the format Standardnotes understands through two different operations but sometimes both of them fail.</p>
+            <b>"There were errors while converting your notes". What can I do?</b>
+            <p>This error appears when the converter encounters a problem at any point of the conversion so we can't specifically say what went wrong. Make sure you only have the Google Keep Takeout .html files selected as any other file will produce this error. You can also try to find out which note produces this error when being converted by converting in smaller groups of notes.</p>
+            <b>The converted time in my notes is off by a few hours, why?</b>
+            <p>Because of the way we format the date into the archive Standardnotes chooses the GMT timezone for the timezone the time is in, resulting in this issue.</p>
+            <b>Are there any other limitations?</b>
+            <p>This converter currently doesn't convert bullet lists as it copies the raw note.</p>
+            <b>I have found a bug!</b>
+            <p>Please report it in the <a href="https://github.com/vantezzen/Google-Keep-to-Standardnotes-Converter/issues">GitHub issue section</a></p>
+            <b>Where can I find the source code for this converter?</b>
+            <p>This converter is open source and <a href="https://github.com/vantezzen/Google-Keep-to-Standardnotes-Converter">availible on GitHub</a></p>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; vantezzen 2018</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="script.js"></script>
+
+
+
+</body>
