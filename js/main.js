@@ -202,20 +202,12 @@ const importNotes = (rawNotes) => {
       title = '';
     }
 
-    // Try to find creation date, usually before div.content
-    let date = new Date();
-
-    const dateString = /.*(?=<\/div>\n\n<div class="content">)/.exec(note.content);
-    // Check if string exists at all
-    if (dateString && dateString[0]) {
-      // Check if string is valid date
-      if (!isNaN(new Date(dateString))) {
-        date = new Date(dateString);
-      } else {
-        // Invalid date
-        log += "Could not find valid date for note " + note.name + ", using now\n";
-      }
-    }
+    // Try to find creation date, usually before div.content or div.title
+    const date = 
+      getDateFromNote(true, note.content) || 
+      getDateFromNote(false, note.content) || 
+      new Date();
+    
 
     notes.push({
       content,
@@ -279,6 +271,30 @@ for (const button of viewLogBtns) {
 /*
  * HELPER FUNCTIONS
  */
+const getDateFromNote = (withTitle, note) => {
+  let regex;
+  if (withTitle) {
+    regex = /.*(?=<\/div>\n<div class="title">)/;
+  } else {
+    regex = /.*(?=<\/div>\n\n<div class="content">)/;
+  }
+  const dateString = regex.exec(note);
+  console.log('A', withTitle, dateString, note);
+  // Check if string exists at all
+  if (dateString && dateString[0]) {
+    // Check if string is valid date
+    if (!isNaN(new Date(dateString))) {
+      console.log('B');
+      return new Date(dateString);
+    } else {
+      console.log('C');
+      // Invalid date
+      log += "Could not find valid date for note " + note.name + ", using now\n";
+    }
+  }
+  return false;
+}
+
 // SOURCE: https://stackoverflow.com/a/2117523
 const randomUuid = () => {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
