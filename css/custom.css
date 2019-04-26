@@ -1,0 +1,97 @@
+/* PROGRESS BAR */
+.progress .indicator {
+  transition: 0.3s ease-in-out;
+}
+
+/* PAGE STATES */
+.page.out-left {
+  position: fixed;
+  left: -100vw;
+  max-width: calc(100vw - 14rem);
+  animation-name: out-left;
+  animation-duration: 0.5s;
+}
+
+@keyframes out-left {
+  from {
+    left: 7rem;
+  }
+  to {
+    left: -100vw;
+  }
+}
+
+.page.active {
+  position: relative;
+  left: 0;
+  max-width: 100vw;
+  animation-name: active-page;
+  animation-duration: 0.5s;
+}
+
+@keyframes active-page {
+  from {
+    left: 100vw;
+  }
+  to {
+    left: 0;
+  }
+}
+
+/* LOADING SPINNER */
+.loader {
+  margin: 100px auto;
+  width: 40px;
+  height: 40px;
+  position: relative;
+  text-align: center;
+  
+  -webkit-animation: sk-rotate 2.0s infinite linear;
+  animation: sk-rotate 2.0s infinite linear;
+}
+
+.loader .dot1, .loader .dot2 {
+  width: 60%;
+  height: 60%;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  background-color: #FFF;
+  border-radius: 100%;
+  
+  -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+  animation: sk-bounce 2.0s infinite ease-in-out;
+}
+
+.loader .dot2 {
+  top: auto;
+  bottom: 0;
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+
+@-webkit-keyframes sk-rotate { 100% { -webkit-transform: rotate(360deg) }}
+@keyframes sk-rotate { 100% { transform: rotate(360deg); -webkit-transform: rotate(360deg) }}
+
+@-webkit-keyframes sk-bounce {
+  0%, 100% { -webkit-transform: scale(0.0) }
+  50% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes sk-bounce {
+  0%, 100% { 
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  } 50% { 
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+  }
+}
+
+/* TAILWIND.CSS EXTENSION */
+.outline-none:focus {
+  outline: 0;
+}
+.w-0 {
+  width: 0;
+}
