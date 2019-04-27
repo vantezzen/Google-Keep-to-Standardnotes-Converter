@@ -77,15 +77,11 @@ for (const button of previousButtons) {
 /*
  * FILE SELECTION AND READING
  */
-// Trigger file input when clicking "Select files" button on instruction page
-document.getElementById('select-files').addEventListener('click', () => {
-  document.getElementById('files').click();
-})
-
-// Listen for file selection
-document.getElementById('files').addEventListener('change', () => {
+// Convert file input files
+const convertFileInput = () => {
   // Open loading page
-  openNextPage();
+  page = 2;
+  openPage('page-loading');
 
   // Set timeout that triggers if there is probably something wrong
   somethingWrongTimeout = setTimeout(() => {
@@ -153,7 +149,29 @@ document.getElementById('files').addEventListener('change', () => {
       }
     }
   }, 0)
-})
+}
+
+// Add file drop listener
+document.ondragover = document.ondragenter = evt => {
+  document.getElementById('drag-overlay').style.display = 'flex';
+  evt.preventDefault();
+};
+document.ondragend = document.ondragexit = () => {
+  document.getElementById('drag-overlay').style.display = 'none';
+}
+document.ondrop = evt => {
+  document.getElementById('drag-overlay').style.display = 'none';
+  
+  if (evt.dataTransfer.files.length) {
+    document.getElementById('files').files = evt.dataTransfer.files;
+    convertFileInput();
+  }
+  evt.preventDefault();
+};
+
+// Listen for file selection
+document.getElementById('files').addEventListener('change', convertFileInput)
+
 
 /*
  * CONVERTING
@@ -279,15 +297,12 @@ const getDateFromNote = (withTitle, note) => {
     regex = /.*(?=<\/div>\n\n<div class="content">)/;
   }
   const dateString = regex.exec(note);
-  console.log('A', withTitle, dateString, note);
   // Check if string exists at all
   if (dateString && dateString[0]) {
     // Check if string is valid date
     if (!isNaN(new Date(dateString))) {
-      console.log('B');
       return new Date(dateString);
     } else {
-      console.log('C');
       // Invalid date
       log += "Could not find valid date for note " + note.name + ", using now\n";
     }
