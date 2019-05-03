@@ -24,9 +24,9 @@ window.addEventListener("error", function (e) {
 // Sequence of pages
 const pages = ['start', 'select', 'loading', 'import', 'done'];
 // Key of the current page in the pages array
-let page = 0;
+let page = -1;
 
-let currentPageName = 'page-start';
+let currentPageName = 'page-merged';
 let previousPageName;
 
 // Open next instruction page

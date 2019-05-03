@@ -1,6 +1,9 @@
 # Google Keep™ to StandardNotes Converter
 Convert a Google Keep Takeout™ archive into a StandardNotes archive
 
+# Merged
+This converter has been [merged into the official StandardNotes tools page](https://github.com/standardnotes/sntools/pull/11). Please use the converter at <https://dashboard.standardnotes.org/tools>.
+
 # Usage
 Go to [https://vantezzen.github.io/Google-Keep-to-Standardnotes-Converter/index.html](https://vantezzen.github.io/Google-Keep-to-Standardnotes-Converter/index.html) and follow the intructions.
 
